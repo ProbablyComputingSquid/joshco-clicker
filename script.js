@@ -97,6 +97,7 @@ function updateCounters(item = "all") {
         case "improved trackpad":
             updateId('improvedTrackpadAmount', shop_clicks["improved trackpad"]["amount"]);
             updateId('improvedTrackpadCost', Math.trunc(shop_clicks["improved trackpad"]["cost"]));
+            updateId('improvedTrackpadBoost', Math.trunc(shop_clicks["improved trackpad"]["base_boost"]) * shop_clicks["improved trackpad"]["multiplier"]);
             if (item == "improved trackpad") {
                 break
             }
@@ -106,6 +107,13 @@ function updateCounters(item = "all") {
     updateId('clickAmount', `You have ${Math.round(lines * 10) / 10} lines of code`);
 }
 function buylinesPerClick(item) {
+    // switch case for what item to boost
+    switch (item){
+        // improved trackpad boosts your trackpad power by 10%
+        case "improved trackpad":
+            shop_time["trackpad"]["multiplier"] += 0.1
+    }
+
     if (lines >= shop_clicks[item]["cost"]) {
         console.log(`Bought item ${item}`)
         lines -= shop_clicks[item]["cost"];
@@ -121,11 +129,13 @@ function buylinesPerClick(item) {
 
 function buylinesPerSecond(item) {
     if (lines >= shop_time[item]["cost"]) {
+        // boilerplate purchasing code
         console.log(`Bought item ${item}`)
         lines -= shop_time[item]["cost"];
         shop_time[item]["amount"] += 1;
         shop_time[item]["cost"] = Math.round(shop_time[item]["cost"] * 1.15);
         linesPerSecond += shop_time[item]["base_boost"] * shop_time[item]["multiplier"];
+        
         updateStorage();
         updateCounters(item);
     } else {

@@ -30,22 +30,23 @@
         <button id="buy_trackpad" onmouseover="show('trackpad_text')" onmouseout="hide('trackpad_text')" onclick="buylinesPerSecond('trackpad');">
           <h2><span id="trackpadAmount">0</span> trackpads: <span id="trackpadCost">15</span></h2>
         </button>
-        <p id="trackpad_text">trackpad: the cheapest of the cheapest ways to move your cursor. very inefficient. randomly sticks sometimes</p>
+        <p id="trackpad_text"><b>Trackpad</b>: the cheapest of the cheapest ways to move your cursor. very inefficient. randomly stops working sometimes</p>
       </div>
       
       <div id="mouse_container">
         <button id="buy_mouse" onmouseover="show('mouse_text')" onmouseout="hide('mouse_text')" onclick="buylinesPerSecond('mouse');">
           <h2><span id="mouseAmount">0</span> thrift store mouse: <span id="mouseCost">100</span></h2>
         </button>
-        <p id="mouse_text">mouse: the right kind. it doesn't move by itself. Found at a St. Vincent thrift store, the cord is frayed and you can see the wires</p>
+        <p id="mouse_text"><b>Mouse</b>: The plastic one, not the ones found in sewers. Found at a St. Vinny's thrift store; the cord is frayed and you can see the wires.</p>
       </div>
     </div>
     <!--lines per click store (well technically upgrades)-->
     <h1>Purchase upgrades</h1>
     <div class="shop_upgrades">
-      <button id="buy_improved_trackpad" onclick="buylinesPerClick('improved trackpad')">
+      <button id="buy_improved_trackpad" onmouseover="show('improved_trackpad_text')" onmouseout="hide('improved_trackpad_text')" onclick="buylinesPerClick('improved trackpad')">
         <h2><span id="improvedTrackpadAmount">0</span> Improved trackpads: <span id="improvedTrackpadCost">100</span></h2>
       </button>
+      <p id="improved_trackpad_text">Improve your trackpads, enabling you to click and drag much better (+<b><span id="improvedTrackpadBoost">0</span></b> lines per click and a 10% boost to trackpad power)</p>
     </div>
   </div>
   <script src="script.js"></script>

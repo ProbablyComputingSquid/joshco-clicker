@@ -16,9 +16,8 @@ html {
      width: 50%;   
 }
 
-#trackpad_text {
-    display: none;
-}
-#mouse_text {
+
+
+.shop_container p {
     display: none;
 }
