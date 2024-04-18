@@ -27,7 +27,12 @@ function checkLocalStorageItem(itemKey) {
 function updateId(id, value) {
     document.getElementById(id).innerHTML = value;
 }
-
+function show(id) {
+    document.getElementById(id).style.display = "block";
+}
+function hide(id) {
+    document.getElementById(id).style.display = "none";
+}
 // if it exists, read all the stuff
 // else, initialize them
 if (checkLocalStorageItem("lines")) {

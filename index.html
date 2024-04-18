@@ -27,16 +27,17 @@
     <h1>Purchase items</h1>
     <div class="shop_items">
       <div id="trackpad_container">
-        <button id="buy_trackpad" onmouseover="" onclick="buylinesPerSecond('trackpad');">
+        <button id="buy_trackpad" onmouseover="show('trackpad_text')" onmouseout="hide('trackpad_text')" onclick="buylinesPerSecond('trackpad');">
           <h2><span id="trackpadAmount">0</span> trackpads: <span id="trackpadCost">15</span></h2>
         </button>
-        <p id="trackpad_text">This should be hidden</p>
+        <p id="trackpad_text">trackpad: the cheapest of the cheapest ways to move your cursor. very inefficient. randomly sticks sometimes</p>
       </div>
       
       <div id="mouse_container">
-        <button id="buy_mouse" onclick="buylinesPerSecond('mouse');">
-          <h2><span id="mouseAmount">0</span> mice: <span id="mouseCost">100</span></h2>
+        <button id="buy_mouse" onmouseover="show('mouse_text')" onmouseout="hide('mouse_text')" onclick="buylinesPerSecond('mouse');">
+          <h2><span id="mouseAmount">0</span> thrift store mouse: <span id="mouseCost">100</span></h2>
         </button>
+        <p id="mouse_text">mouse: the right kind. it doesn't move by itself. Found at a St. Vincent thrift store, the cord is frayed and you can see the wires</p>
       </div>
     </div>
     <!--lines per click store (well technically upgrades)-->
