@@ -1,12 +1,14 @@
 // uncomment this line to delete all local storage data
+// also it generally fixes bugs LOL
 //localStorage.clear();
 
-// josheco clicker
+// joshco clicker
 // ---------------
 // initialize variables n stuff
 var lines = 1000;
 var linesPerClick = 1;
 var linesPerSecond = 0;
+// linesMultiplier is a global lines multiplier btw (unimplemented lol)
 var linesMultiplier = 1;
 var username;
 var shop_time = {
@@ -16,6 +18,7 @@ var shop_time = {
 
 var shop_clicks = {
     "improved trackpad": {"cost": 100, "amount": 0, "base_boost": 1, "multiplier": 1},
+    "ergonomic mouse": {"cost": 750, "amount": 0, "base_boost": 1, "multiplier": 1}
 }
 // initialize keys
 var keys = ["lines", "linesPerClick", "linesPerSecond", "linesMultiplier", "username"];
@@ -33,6 +36,12 @@ function show(id) {
 function hide(id) {
     document.getElementById(id).style.display = "none";
 }
+
+// TODO: write a function that checks if the user's store is up-to-date, and if it is not, append the missing items n stuff
+
+function validateStore() {
+    // write later :D
+}
 // if it exists, read all the stuff
 // else, initialize them
 if (checkLocalStorageItem("lines")) {
@@ -47,12 +56,7 @@ if (checkLocalStorageItem("lines")) {
 } else {
     username = prompt("Enter username?");
     localStorage.setItem("username", username);
-    localStorage.setItem("lines", lines);
-    localStorage.setItem("linesPerClick", linesPerClick);
-    localStorage.setItem("linesPerSecond", linesPerSecond);
-    localStorage.setItem("linesMultiplier", linesMultiplier);
-    localStorage.setItem("shop_time", JSON.stringify(shop_time));
-    localStorage.setItem("shop_clicks", JSON.stringify(shop_clicks));
+    updateStorage();
 }
 
 setInterval(() => updatePerSecond(), 1000);
@@ -80,16 +84,18 @@ function updateCounters(item = "all") {
     switch (item){
         // per second items
         case "all":
-            console.log("idk")
+            // do nothing
         case "trackpad":
             updateId('trackpadAmount', shop_time["trackpad"]["amount"]);
             updateId('trackpadCost', Math.trunc(shop_time["trackpad"]["cost"]));
+            updateId('trackpadBoost', Math.trunc(shop_time["trackpad"]["base_boost"] * shop_time["trackpad"]["multiplier"] * 100) / 100);
             if (item == "trackpad") {
-                break
+                break;
             }
         case "mouse":
             updateId('mouseAmount', shop_time["mouse"]["amount"]);
             updateId('mouseCost', Math.trunc(shop_time["mouse"]["cost"]));
+            updateId('mouseBoost', Math.trunc(shop_time["mouse"]["base_boost"] * shop_time["mouse"]["multiplier"] * 100) / 100);
             if (item == "mouse") {
                 break
             }
@@ -101,7 +107,13 @@ function updateCounters(item = "all") {
             if (item == "improved trackpad") {
                 break
             }
-        
+        case "ergonomic mouse":
+            updateId('ergonomicMouseAmount', shop_clicks["ergonomic mouse"]["amount"]);
+            updateId('ergonomicMouseCost', Math.trunc(shop_clicks["ergonomic mouse"]["cost"]));
+            updateId('ergonomicMouseBoost', Math.trunc(shop_clicks["ergonomic mouse"]["base_boost"]) * shop_clicks["ergonomic mouse"]["multiplier"]);
+            if (item == "ergonomic mouse") {
+                break
+            }
     
     }
     updateId('clickAmount', `You have ${Math.round(lines * 10) / 10} lines of code`);

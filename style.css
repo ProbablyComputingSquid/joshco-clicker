@@ -16,6 +16,12 @@ html {
      width: 50%;   
 }
 
+.shop_container button {
+    border-radius: 16px;
+    border-color: black;
+    border-width: 2px;
+    position: block;
+}
 
 
 .shop_container p {

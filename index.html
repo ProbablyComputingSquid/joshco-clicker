@@ -30,14 +30,14 @@
         <button id="buy_trackpad" onmouseover="show('trackpad_text')" onmouseout="hide('trackpad_text')" onclick="buylinesPerSecond('trackpad');">
           <h2><span id="trackpadAmount">0</span> trackpads: <span id="trackpadCost">15</span></h2>
         </button>
-        <p id="trackpad_text"><b>Trackpad</b>: the cheapest of the cheapest ways to move your cursor. very inefficient. randomly stops working sometimes</p>
+        <p id="trackpad_text"><b>Trackpad</b>: the cheapest of the cheapest ways to move your cursor. very inefficient. randomly stops working sometimes. (+<b><span id="trackpadBoost">0</span></b> lines per second)</p>
       </div>
       
       <div id="mouse_container">
         <button id="buy_mouse" onmouseover="show('mouse_text')" onmouseout="hide('mouse_text')" onclick="buylinesPerSecond('mouse');">
           <h2><span id="mouseAmount">0</span> thrift store mouse: <span id="mouseCost">100</span></h2>
         </button>
-        <p id="mouse_text"><b>Mouse</b>: The plastic one, not the ones found in sewers. Found at a St. Vinny's thrift store; the cord is frayed and you can see the wires.</p>
+        <p id="mouse_text"><b>Mouse</b>: The plastic one, not the ones found in sewers. Found at a St. Vinny's thrift store; The wire is really long, much longer than it really needs to be. (+<b><span id="mouseBoost">0</span></b> lines per second)</p>
       </div>
     </div>
     <!--lines per click store (well technically upgrades)-->
@@ -46,9 +46,19 @@
       <button id="buy_improved_trackpad" onmouseover="show('improved_trackpad_text')" onmouseout="hide('improved_trackpad_text')" onclick="buylinesPerClick('improved trackpad')">
         <h2><span id="improvedTrackpadAmount">0</span> Improved trackpads: <span id="improvedTrackpadCost">100</span></h2>
       </button>
-      <p id="improved_trackpad_text">Improve your trackpads, enabling you to click and drag much better (+<b><span id="improvedTrackpadBoost">0</span></b> lines per click and a 10% boost to trackpad power)</p>
+      <p id="improved_trackpad_text">Improve your trackpads, enabling you to click and drag much better (+<b><span id="improvedTrackpadBoost">0</span></b> lines per click and a <b>10%</b> boost to trackpad power)</p>
+      
+      <button id="buy_ergonomic_mouse" onmouseover="show('ergonomic_mouse_text')" onmouseout="hide('ergonomic_mouse_text')" onclick="buylinesPerClick('improved trackpad')">
+        <h2><span id="ergonomicMouseAmount">0</span> Ergonomic mouse: <span id="ergonomicMouseCost">750</span></h2>
+      </button>
+      <p id="ergonomic_mouse_text">Introducing the brand-new <a href="https://www.amazon.com/Anker-Wireless-Vertical-Ergonomic-Optical/dp/B00BIFNTMC">Anker 2.4G Wireless Vertical Ergonomic Optical Mouse</a>, enabling you to do all that difficult coding work with less of that nasty wrist pain. (+<b><span id="ergonomicMouseBoost">0</span></b> lines per click and a <b>10%</b> boost to mouse power)</p>
     </div>
   </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
   <script src="script.js"></script>
 </body>
 
