@@ -4,10 +4,10 @@
 // josheco clicker
 // ---------------
 // initialize variables n stuff
-var dollars = 1000;
-var dollarsPerClick = 1;
-var dollarsPerSecond = 0;
-var dollarsMultiplier = 1;
+var lines = 1000;
+var linesPerClick = 1;
+var linesPerSecond = 0;
+var linesMultiplier = 1;
 var username;
 var shop_time = {
     "trackpad" : {"cost" : 15, "amount" : 0, "base_boost" : 0.1, "multiplier" : 1},
@@ -18,7 +18,7 @@ var shop_clicks = {
     "improved trackpad": {"cost": 100, "amount": 0, "base_boost": 1, "multiplier": 1},
 }
 // initialize keys
-var keys = ["dollars", "dollarsPerClick", "dollarsPerSecond", "dollarsMultiplier", "username"];
+var keys = ["lines", "linesPerClick", "linesPerSecond", "linesMultiplier", "username"];
 
 
 function checkLocalStorageItem(itemKey) {
@@ -30,11 +30,11 @@ function updateId(id, value) {
 
 // if it exists, read all the stuff
 // else, initialize them
-if (checkLocalStorageItem("dollars")) {
-    dollars = parseInt(localStorage.getItem("dollars"));
-    dollarsPerClick = parseInt(localStorage.getItem("dollarsPerClick"));
-    dollarsPerSecond = parseInt(localStorage.getItem("dollarsPerSecond"));
-    dollarsMultiplier = parseInt(localStorage.getItem("dollarsMultiplier"));
+if (checkLocalStorageItem("lines")) {
+    lines = parseInt(localStorage.getItem("lines"));
+    linesPerClick = parseInt(localStorage.getItem("linesPerClick"));
+    linesPerSecond = parseInt(localStorage.getItem("linesPerSecond"));
+    linesMultiplier = parseInt(localStorage.getItem("linesMultiplier"));
     username = localStorage.getItem("username");
     shop_time = JSON.parse(localStorage.getItem("shop_time"));
     shop_clicks = JSON.parse(localStorage.getItem("shop_clicks"));
@@ -42,30 +42,30 @@ if (checkLocalStorageItem("dollars")) {
 } else {
     username = prompt("Enter username?");
     localStorage.setItem("username", username);
-    localStorage.setItem("dollars", dollars);
-    localStorage.setItem("dollarsPerClick", dollarsPerClick);
-    localStorage.setItem("dollarsPerSecond", dollarsPerSecond);
-    localStorage.setItem("dollarsMultiplier", dollarsMultiplier);
+    localStorage.setItem("lines", lines);
+    localStorage.setItem("linesPerClick", linesPerClick);
+    localStorage.setItem("linesPerSecond", linesPerSecond);
+    localStorage.setItem("linesMultiplier", linesMultiplier);
     localStorage.setItem("shop_time", JSON.stringify(shop_time));
     localStorage.setItem("shop_clicks", JSON.stringify(shop_clicks));
 }
 
 setInterval(() => updatePerSecond(), 1000);
 function clicked() {
-    dollars += dollarsPerClick;
-    //console.log(`Button has been clicked, you have ${dollars} dollars`);
+    lines += linesPerClick;
+    //console.log(`Button has been clicked, you have ${lines} lines`);
     updateCounters();
 }
 function updateStorage() {
-    localStorage.setItem("dollars", dollars);
-    localStorage.setItem("dollarsPerClick", dollarsPerClick);
-    localStorage.setItem("dollarsPerSecond", dollarsPerSecond);
-    localStorage.setItem("dollarsMultiplier", dollarsMultiplier);
+    localStorage.setItem("lines", lines);
+    localStorage.setItem("linesPerClick", linesPerClick);
+    localStorage.setItem("linesPerSecond", linesPerSecond);
+    localStorage.setItem("linesMultiplier", linesMultiplier);
     localStorage.setItem("shop_time", JSON.stringify(shop_time));
     localStorage.setItem("shop_clicks", JSON.stringify(shop_clicks));
 }
 function updatePerSecond() {
-    dollars += dollarsPerSecond;
+    lines += linesPerSecond;
     updateStorage();
     updateCounters();
 }
@@ -98,32 +98,32 @@ function updateCounters(item = "all") {
         
     
     }
-    updateId('clickAmount', `You have ${Math.round(dollars * 10) / 10} dollars`);
+    updateId('clickAmount', `You have ${Math.round(lines * 10) / 10} lines of code`);
 }
-function buyDollarsPerClick(item) {
-    if (dollars >= shop_clicks[item]["cost"]) {
+function buylinesPerClick(item) {
+    if (lines >= shop_clicks[item]["cost"]) {
         console.log(`Bought item ${item}`)
-        dollars -= shop_clicks[item]["cost"];
+        lines -= shop_clicks[item]["cost"];
         shop_clicks[item]["amount"] += 1;
         shop_clicks[item]["cost"] = Math.round(shop_clicks[item]["cost"] * 1.15);
-        dollarsPerClick += shop_clicks[item]["base_boost"] * shop_clicks[item]["multiplier"];
+        linesPerClick += shop_clicks[item]["base_boost"] * shop_clicks[item]["multiplier"];
         updateStorage();
         updateCounters(item);
     } else {
-        console.log("Not enough dollars");
+        console.log("Not enough lines");
     }
 }
 
-function buyDollarsPerSecond(item) {
-    if (dollars >= shop_time[item]["cost"]) {
+function buylinesPerSecond(item) {
+    if (lines >= shop_time[item]["cost"]) {
         console.log(`Bought item ${item}`)
-        dollars -= shop_time[item]["cost"];
+        lines -= shop_time[item]["cost"];
         shop_time[item]["amount"] += 1;
         shop_time[item]["cost"] = Math.round(shop_time[item]["cost"] * 1.15);
-        dollarsPerSecond += shop_time[item]["base_boost"] * shop_time[item]["multiplier"];
+        linesPerSecond += shop_time[item]["base_boost"] * shop_time[item]["multiplier"];
         updateStorage();
         updateCounters(item);
     } else {
-        console.log("Not enough dollars");
+        console.log("Not enough lines");
     }
 }
