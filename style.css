@@ -2,18 +2,29 @@ html {
   height: 100%;
   width: 100%;
 }
-.logo_button {
-    width: 75%;
-    height: 75%;
+.logo_container {
+    width: 75vw;
+    height: 50vh;
     background-color: skyblue;
     text-align: center;
 }
-.logo_button button {
+.logo_button {
     background-color: lightslategray;
     border: 8px;
     border-radius: 16px;
     border-color: black;
-     width: 50%;   
+    width: 25vw;
+    height: 25vh;
+    margin: 0 auto;
+    vertical-align: center;
+    padding: 10px;
+    position: relative;
+}
+.logo_button button {
+    border-radius: 16px;
+    border-width: 4px;
+    border-color: black;
+    background-color: transparent;
 }
 
 .shop_container button {
@@ -22,7 +33,10 @@ html {
     border-width: 2px;
     position: block;
 }
-
+.shop_container {
+    background-color:lightgrey;
+    padding: 10px;
+}
 
 .shop_container p {
     display: none;

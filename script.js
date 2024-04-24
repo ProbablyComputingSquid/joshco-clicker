@@ -13,12 +13,13 @@ var linesMultiplier = 1;
 var username;
 var shop_time = {
     "trackpad" : {"cost" : 15, "amount" : 0, "base_boost" : 0.1, "multiplier" : 1},
-    "mouse" : {"cost" : 100, "amount" : 0, "base_boost" : 1, "multiplier" : 1},
+    "mouse" : {"cost" : 100, "amount" : 0, "base_boost" : 2, "multiplier" : 1},
+    "keyboard": {"cost": 1100, "amount": 0, "base_boost": 11, "multiplier": 1}
 }
 
 var shop_clicks = {
     "improved trackpad": {"cost": 100, "amount": 0, "base_boost": 1, "multiplier": 1},
-    "ergonomic mouse": {"cost": 750, "amount": 0, "base_boost": 1, "multiplier": 1}
+    "ergonomic mouse": {"cost": 750, "amount": 0, "base_boost": 10, "multiplier": 1}
 }
 // initialize keys
 var keys = ["lines", "linesPerClick", "linesPerSecond", "linesMultiplier", "username"];
@@ -39,9 +40,20 @@ function hide(id) {
 
 // TODO: write a function that checks if the user's store is up-to-date, and if it is not, append the missing items n stuff
 
-function validateStore() {
-    // write later :D
+function updateMissingKeys() {
+    let correct_keys = Object.keys(shop_time);
+    let actual_keys = Object.keys(JSON.stringify(localStorage.getItem("shop_time")));
+    Object.assign(actual_keys, correct_keys);
+    localStorage.setItem("shop_time", JSON.stringify(correct_keys));
+
+    
+    correct_keys = Object.keys(shop_clicks)
+    actual_keys = Object.keys(JSON.stringify(localStorage.getItem("shop_clicks")))
+    Object.assign(actual_keys, correct_keys);
+    localStorage.setItem("shop_clicks", JSON.stringify(correct_keys));
 }
+
+
 // if it exists, read all the stuff
 // else, initialize them
 if (checkLocalStorageItem("lines")) {
@@ -52,7 +64,7 @@ if (checkLocalStorageItem("lines")) {
     username = localStorage.getItem("username");
     shop_time = JSON.parse(localStorage.getItem("shop_time"));
     shop_clicks = JSON.parse(localStorage.getItem("shop_clicks"));
-    
+    updateMissingKeys();
 } else {
     username = prompt("Enter username?");
     localStorage.setItem("username", username);
